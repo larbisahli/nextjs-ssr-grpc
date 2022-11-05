@@ -1,0 +1,32 @@
+{
+  "name": "express-server",
+  "version": "1.0.0",
+  "main": "dist/server.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && cp ./src/protos/*.proto ./dist/protos",
+    "watch": "tsc --watch",
+    "start": "cross-env NODE_ENV=production node ./dist/server.js",
+    "nodemon": "cross-env NODE_ENV=development nodemon ./dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"yarn:watch\" \"yarn:nodemon\"",
+    "prettier": "prettier --write \"**/*.{ts,json,yml}\""
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.7.3",
+    "@grpc/proto-loader": "^0.7.3",
+    "concurrently": "^7.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.4.1",
+    "typescript": "^4.5.2"
+  }
+}

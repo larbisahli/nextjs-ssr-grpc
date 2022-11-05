@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package authService;
+
+// Define a service
+// Define data types here
+message AccountCredentials {
+  string username = 1;
+  string password = 2;
+}
+
+message OauthCredentials {
+  string token = 1;
+}
+
+message ClientInfo {
+  string firstName = 1;
+  string lastName = 2;
+  uint32 age = 3;
+}
+
+// Define the services containing methods here
+service AuthServiceRoutes {
+  // Basic function call, makes request and returns value
+  rpc Login(AccountCredentials) returns (OauthCredentials) {}
+  rpc Logout(OauthCredentials) returns (OauthCredentials) {}
+}
+
+service ClientServiceRoutes {
+  rpc Client(OauthCredentials) returns (ClientInfo) {}
+}
