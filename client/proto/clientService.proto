@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package clientService;
+
+message ClientRequest {
+  uint32 id = 1;
+}
+
+message ClientResponse {
+  uint32 id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  uint32 age = 4;
+  string email = 5;
+  bool active = 6;
+}
+
+// Define the services containing methods here
+service ClientServiceRoutes {
+   // Basic function call, makes request and returns value
+  rpc client(ClientRequest) returns (ClientResponse) {}
+}

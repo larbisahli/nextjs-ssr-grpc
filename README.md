@@ -1,4 +1,4 @@
-## Nextjs server side rendering data using grpc
+## Next.js SSR using gRPC
 
 We are going to use the following packages to build our application:
 
@@ -8,5 +8,18 @@ We are going to use the following packages to build our application:
 
 Generate the types:
 ```bash 
-$(npm bin)/proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=proto/ proto/*.proto
+yarn proto-gen-types
+```
+
+Starting Nextjs server:
+```bash
+cd client
+yarn dev
+```
+
+Starting grpc server:
+```bash
+cd server
+yarn build
+yarn dev
 ```

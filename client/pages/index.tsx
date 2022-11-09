@@ -1,27 +1,35 @@
-import type { NextPage } from 'next';
 import type { GetServerSideProps } from 'next';
-import { AuthService, ClientService } from '../core/grpc-service';
+import { ClientService } from '../core/grpc-service';
 
 interface Props {
-  result: {
+  client: {
+    id: number;
     firstName: string;
     lastName: string;
-    age: string;
+    age: number;
+    email: string;
+    active: boolean;
   };
 }
 
-export default function Home({ result }: Props) {
-  console.log('================>', { result });
-
-  return <div className="container">{JSON.stringify(result)}</div>;
+export default function Home({ client }: Props) {
+  return (
+    <div className="container">
+      <span>id: {client.id}</span>
+      <span>FistName: {client.firstName}</span>
+      <span>LastName: {client.lastName}</span>
+      <span>Email: {client.email}</span>
+      <span>Age: {client.age}</span>
+    </div>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const authService = new AuthService();
-    const result = await authService.loginClient('LARBI', 'pass-556');
+    const authService = new ClientService();
+    const { client, error } = await authService.getClient(1);
     return {
-      props: { result },
+      props: { client, error },
     };
   } catch (error) {
     return {

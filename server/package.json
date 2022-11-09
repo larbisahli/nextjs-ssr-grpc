@@ -4,13 +4,14 @@
   "main": "dist/server.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && cp ./src/protos/*.proto ./dist/protos",
+    "build": "npx rimraf ./dist && tsc && cp ./src/proto/*.proto ./dist/proto",
     "watch": "tsc --watch",
     "start": "cross-env NODE_ENV=production node ./dist/server.js",
     "nodemon": "cross-env NODE_ENV=development nodemon ./dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"yarn:watch\" \"yarn:nodemon\"",
-    "prettier": "prettier --write \"**/*.{ts,json,yml}\""
+    "prettier": "prettier --write \"**/*.{ts,json,yml}\"",
+    "proto-gen-types": "npx rimraf src/proto/generated && $(npm bin)/proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/proto/generated src/proto/*.proto"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.7.3",
@@ -27,6 +28,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
     "typescript": "^4.5.2"
   }
 }

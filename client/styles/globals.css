@@ -17,7 +17,14 @@ a {
 }
 
 .container {
-  padding: 0 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  border: #a5b0e2 2px;
+}
+
+.container span {
+  margin: 0 2rem;
 }
 
 .main {

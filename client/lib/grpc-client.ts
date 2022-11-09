@@ -1,9 +1,9 @@
 import * as grpc from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
-import { ProtoGrpcType } from './authService';
+import { ProtoGrpcType } from '@proto/generated/clientService';
 import path from 'path';
 
-const PROTO_PATH = path.join(process.cwd(), './lib/authService.proto');
+const PROTO_PATH = path.join(process.cwd(), './proto/clientService.proto');
 
 // suggested options for similarity to loading grpc.load behavior
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
@@ -12,8 +12,8 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   oneofs: true,
 });
 
-const authService = (
+const clientService = (
   grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType
-).authService;
+).clientService;
 
-export const { AuthServiceRoutes, ClientServiceRoutes } = authService;
+export const { ClientServiceRoutes } = clientService;
