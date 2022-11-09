@@ -17,7 +17,7 @@ cd client
 yarn dev
 ```
 
-Starting grpc server:
+Starting gRPC server:
 ```bash
 cd server
 yarn build
